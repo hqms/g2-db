@@ -24,7 +24,7 @@ public class Employees {
 
     @Column(name = "hire_date")
     private LocalDate hire_date;
-    
+
 
     public int getEmp_no() {
         return emp_no;
