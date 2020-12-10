@@ -43,9 +43,24 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    public ResponseEntity<Employees> createTutorial(@RequestBody Employees employees) {
+    public ResponseEntity<Employees> createEmployee(@RequestBody Employees employees) {
             Employees _tutorial = employeesRepository.save(employees);
             return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
 
+    }
+
+    @PutMapping("/employees/{id}")
+    public ResponseEntity<Employees> updateEmployee(@PathVariable("id") long id, @RequestBody Employees employees) {
+        Optional<Employees> employeeData = employeesRepository.findById(id);
+
+        if (employeeData.isPresent()) {
+            Employees _employee = employeeData.get();
+            _employee.setFirst_name(employees.getFirst_name());
+            _employee.setLast_name(employees.getLast_name());
+            _employee.setHire_date(employees.getHire_date());
+            return new ResponseEntity<>(employeesRepository.save(_employee), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
