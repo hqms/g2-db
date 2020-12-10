@@ -41,4 +41,11 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/employees")
+    public ResponseEntity<Employees> createTutorial(@RequestBody Employees employees) {
+            Employees _tutorial = employeesRepository.save(employees);
+            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+
+    }
 }
