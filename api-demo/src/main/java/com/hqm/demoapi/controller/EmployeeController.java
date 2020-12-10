@@ -63,4 +63,10 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/employee/{id}")
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") long id) {
+        employeesRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
