@@ -2,6 +2,11 @@ package com.hqm.demoapi.controller;
 
 import com.hqm.demoapi.model.Employees;
 import com.hqm.demoapi.repository.EmployeesRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +23,12 @@ public class EmployeeController {
     @Autowired
     EmployeesRepository employeesRepository;
 
+    @Operation(summary = "Get a list of Employess")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List of employees",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Employees.class))}
+            ),
+    })
     @GetMapping("/employees")
     public ResponseEntity<List<Employees>> getEmployees(@RequestParam(required = false) String args){
         List<Employees> employees = new ArrayList<Employees>();
