@@ -10,7 +10,7 @@ public class Employees {
     @Id
     private int emp_no;
 
-    @Column(name = "birth_date")
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birth_date;
 
     @Column(name = "first_name")
@@ -22,7 +22,7 @@ public class Employees {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "hire_date")
+    @Column(name = "hire_date", nullable = false)
     private LocalDate hire_date;
 
 
